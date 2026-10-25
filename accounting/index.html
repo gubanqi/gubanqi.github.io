@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0d141d">
+<meta name="description" content="《初级会计学》第9版期末复习。按章节学习知识点、独立做题和核对解析。">
+<title>会计自习室｜初级会计学第9版</title>
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="learning.css">
+<script src="logic.js" defer></script><script src="learning.js" defer></script><script src="app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#content">跳到内容</a>
+<aside class="sidebar" aria-label="课程导航">
+  <a class="brand" href="#home"><img src="icon.svg" alt="" width="36" height="36"><span>会计自习室<small>初级会计学 · 第9版</small></span></a>
+  <a class="nav-home" href="#home">章节总览</a><a class="nav-wrongs" href="#wrongs">错题本 <span id="wrong-badge">0</span></a>
+  <p class="side-caption">本学期课程</p><nav id="chapter-nav" aria-label="章节目录"></nav>
+  <button class="add-chapter" data-action="add">＋ 添加新章节</button>
+  <div class="side-bottom"><span class="status-dot"></span>解析默认隐藏<p>先独立完成，再核对过程。</p><button class="text-button" data-action="export">导出练习记录</button><button class="text-button" data-action="import">导入记录</button><small>练习记录保存在当前浏览器。</small></div>
+</aside>
+<div class="workspace">
+ <header class="topbar"><a href="#home" class="mobile-brand">会计自习室</a><span class="top-caption">期末复习</span><label class="search-label"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="搜索知识点、题号或内容" aria-label="搜索知识点、题号或内容"></label><button class="quiet-button" data-action="add">添加章节</button></header>
+ <main id="content" tabindex="-1"><p class="loading">正在载入章节与题目……</p></main>
+ <footer class="site-footer"><p>依据教材与已提供课件整理。练习表现不等于期末预测成绩。</p><p><button class="text-button" data-action="export">导出练习记录</button><button class="text-button" data-action="import">导入记录</button><span class="small">仅在当前浏览器保存，可导出后在其他设备导入。</span></p></footer>
+</div>
+<dialog id="add-dialog" aria-labelledby="add-title"><form id="update-form"><div class="dialog-heading"><h2 id="add-title">继续添加一章</h2><button type="button" data-action="close-dialog" class="icon-button" aria-label="关闭">×</button></div><p>把新课件发到创建本网站的那段对话。我会整理新章节，再更新同一个网址。</p><ol class="steps"><li>在原对话附上 PDF、PPT 或清晰截图。</li><li>说明章号、教材版本，以及老师要求的范围。</li><li>我核对课件，补知识点、题目和解析，再发布更新。</li></ol><div class="field-row"><label>章号<input id="new-number" type="number" min="1" max="99" required></label><label>章节名称<input id="new-title" placeholder="例如：成本计算" maxlength="80"></label></div><label>老师要求或你的薄弱点<textarea id="new-notes" rows="3" placeholder="可不填。例如：需要多练业务计算题。" maxlength="1000"></textarea></label><button class="primary" type="submit">生成可复制的更新请求</button><div id="update-result" hidden><label>连同课件一起发到原对话<textarea id="update-request" rows="7" readonly></textarea></label><button class="quiet-button" type="button" data-action="copy-update">复制请求</button></div><p class="muted small">按你选择的方式，通过对话更新；此页面不调用付费 API，也不会自动上传文件。</p></form></dialog>
+<input id="import-file" type="file" accept="application/json,.json" hidden>
+<div id="toast" role="status" aria-live="polite"></div>
+</body></html>
