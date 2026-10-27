@@ -22,7 +22,22 @@ function renderPractice(c,requestedId){activeQuestions=selectQuestions(c);if(req
  const details=$('.solution');details.addEventListener('toggle',()=>{if(details.open){r.seen=true;if(!r.submitted)r.seenBeforeSubmit=true;save();}});
 }
 function navigate(){if(!course)return;$('#search').value='';renderNav();const parts=location.hash.replace(/^#/,'').split('/');if(parts[0]==='wrongs'){renderWrongBook();return;}if(parts[0]!=='chapter'){renderHome();return;}const c=course.chapters.find(x=>x.id===parts[1]);if(!c){renderHome();return;}if(currentChapter?.id!==c.id){position=0;filter='all';questionType='all';}currentChapter=c;currentQuestion=null;if(parts[3]){filter='all';questionType='all';}const tab=['knowledge','quick','practice','sources'].includes(parts[2])?parts[2]:'knowledge';if(parts[4]==='review'){const reviewQuestion=c.questions.find(q=>q.id===parts[3]);if(reviewQuestion)resetAttempt(reviewQuestion);history.replaceState(null,'',`#chapter/${c.id}/practice/${parts[3]}`);}chapterShell(c,tab);if(tab==='practice')renderPractice(c,parts[3]);else if(tab==='sources')renderCoverage(c);else if(tab==='quick')renderQuick(c);else renderDetailed(c,parts[3]);}
-function submit(){const q=currentQuestion;if(!q)return;const r=record(q);if(r.submitted)return;if(isObjective(q)&&!r.choices.length){toast('请先选择答案。');return;}if(!isObjective(q)&&!r.text.trim()){toast('请先写下关键结果或过程，再保存。');return;}const seen=!!r.seenBeforeSubmit||!!document.querySelector(".solution")?.open;r.submitted=true;r.attemptNumber=(r.attemptNumber||0)+1;r.attemptSeen=seen;r.currentCorrect=isObjective(q)?StudyLogic.grade(q,r.choices):null;if(!r.firstAttempt)r.firstAttempt={method:isObjective(q)?'auto':'self',correct:r.currentCorrect,seenBeforeSubmit:seen};if(isObjective(q))recordOutcome(q,r,r.currentCorrect);save();renderPractice(currentChapter);renderNav();}
+function submit(){
+ const q=currentQuestion;if(!q)return;const r=record(q);if(r.submitted)return;
+ if(isObjective(q)&&!r.choices.length){toast('请先选择答案。');return;}
+ if(!isObjective(q)&&!r.text.trim()){toast('请先写下关键结果或过程，再保存。');return;}
+ const seen=!!r.seenBeforeSubmit||!!$('.solution')?.open;
+ r.submitted=true;r.attemptNumber=(r.attemptNumber||0)+1;r.attemptSeen=seen;
+ r.currentCorrect=isObjective(q)?StudyLogic.grade(q,r.choices):null;
+ if(!r.firstAttempt)r.firstAttempt={method:isObjective(q)?'auto':'self',correct:r.currentCorrect,seenBeforeSubmit:seen};
+ if(isObjective(q))recordOutcome(q,r,r.currentCorrect);
+ save();
+ // Keep the submitted question visible when it leaves an unanswered/wrong filter.
+ if(!selectQuestions(currentChapter).some(item=>item.id===q.id))filter='all';
+ renderPractice(currentChapter,q.id);
+ $('.solution').open=true;
+ renderNav();
+}
 
 function resetAttempt(q){const r=record(q);r.choices=[];r.text='';r.submitted=false;r.currentCorrect=null;r.seenBeforeSubmit=false;r.attemptSeen=false;save();}
 function recordOutcome(q,r,correct){
