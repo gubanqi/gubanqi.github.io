@@ -1,4 +1,22 @@
 /* Long lessons retain the site's existing dark palette. */
+.chapter-overview-link{display:inline-block;margin-top:16px;padding:10px 16px;border:1px solid var(--blue);border-radius:6px;color:var(--blue);font-size:14px}
+.chapter-overview-link[aria-current]{background:#233c56;color:var(--text)}
+.account-overview{max-width:1000px;line-height:1.95;overflow-wrap:anywhere}
+.account-overview h3{font-size:20px;margin:0 0 12px}.account-overview h4{font-size:17px;color:var(--text);margin:0 0 12px}
+.overview-basics{padding:22px;background:var(--surface);border-left:3px solid var(--blue);margin:22px 0}
+.overview-basics ol{padding-left:22px}.overview-basics li+li,.overview-basics p+p{margin-top:12px}
+.business-flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:0;list-style-position:inside;margin:16px 0 26px}
+.business-flow li{padding:14px;background:#142432;border-bottom:2px solid #567d9b;font-size:14px}
+.overview-toc{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0 32px}.overview-toc a{padding:7px 12px;border:1px solid var(--line);border-radius:5px;font-size:13px}
+.account-group{margin:32px 0 44px;scroll-margin-top:20px}.group-hint{color:var(--muted);margin-bottom:18px;font-size:14px}
+.account-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.account-entry{padding:22px;background:var(--surface);border:1px solid var(--line);border-radius:7px;min-width:0}
+.account-entry dl{margin:0;font-size:14px}.account-entry dt{color:var(--mint);font-size:12px;margin-top:12px}.account-entry dd{margin:3px 0 0}
+.overview-more{display:inline-block;margin-top:16px;font-size:13px}
+.overview-example{border-top:1px solid var(--line);padding:24px 0}.overview-example>p{font-size:14px}
+.overview-example pre{white-space:pre-wrap;overflow-wrap:anywhere;font:15px/2 DengXian,'Microsoft YaHei',sans-serif;background:#112330;padding:20px;margin:18px 0;border-left:3px solid var(--mint)}
+.example-reason{color:#c2d7ea}.overview-exit{display:flex;flex-wrap:wrap;gap:24px;margin-top:26px}
+@media(max-width:760px){.business-flow{grid-template-columns:1fr}.account-list{grid-template-columns:1fr}.overview-basics,.account-entry{padding:18px}.overview-example pre{padding:16px;font-size:14px}.account-overview h3{font-size:19px}}
 .tabs{gap:clamp(16px,2.2vw,28px);overflow-x:auto;white-space:nowrap;scrollbar-width:thin}
 .tab{flex-shrink:0}
 .learning-intro{display:flex;justify-content:space-between;align-items:start;gap:24px;margin:4px 0 18px}
