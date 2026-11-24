@@ -43,6 +43,9 @@
 .requirement{font-size:11px;color:#c0d5ef;background:#263a51;border-radius:4px;padding:2px 9px}
 .lesson-unit .source-note{line-height:1.8}
 .lesson-unit .source-note a{color:#a1bbd9}
+.beginner-intro{padding:16px 18px;border-left:3px solid var(--blue);background:#111e2b;border-radius:5px;margin-bottom:20px;font-size:15px;line-height:1.85}
+.beginner-intro h3,.knowledge-item .beginner-intro h3{font-size:15px;color:#cddbef;margin:0 0 5px}
+.beginner-intro p+h3,.knowledge-item .beginner-intro p+h3{margin-top:13px}
 .lesson-explanation{font-size:15px;line-height:2.05}
 .lesson-explanation p+p{margin-top:18px}
 .lesson-rules{background:#111e2b;border-radius:6px;padding:18px 20px;margin:25px 0}
